@@ -17,10 +17,10 @@ import CurrentUserContext from './contexts/current-user/current-user.context';
 class App extends React.Component {
   constructor() {
     super();
-    
+
     this.state = {
       currentUser: null
-    }
+    };
   }
 
   unsubscribeFromAuth = null;
@@ -31,10 +31,12 @@ class App extends React.Component {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot(snapShot => {
-          this.setState({currentUser: {
-            id: snapShot.id,
-            ...snapShot.data()
-          }});
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          });
         });
       }
 
